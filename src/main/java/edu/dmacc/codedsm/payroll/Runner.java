@@ -37,12 +37,12 @@ public class Runner {
                 Scanner inUpdate = new Scanner(System.in);
                 System.out.print("Enter the employee ID to update: ");
                 String inputId = inUpdate.next();
-                if (inputId != null && Character.isDigit(inputId.charAt(0))) {
+                if (inputId != null && isNumeric(inputId)) {
                     if (controller_empl.foundEmployee(inputId)) {
                         Scanner inputHours = new Scanner(System.in);
                         System.out.print("Update the hours employee worked: ");
                         String hoursWorked = inputHours.next();
-                        if (Character.isDigit(hoursWorked.charAt(0))) {
+                        if (isNumeric(hoursWorked)) {
                             controller_empl.updatedEmployee(inputId, hoursWorked);
                         }else {
                             System.out.println("You must enter a valid number for hours worked.");
@@ -67,5 +67,13 @@ public class Runner {
                 System.out.println("                                       ");
             }
         }
+    }
+    private static boolean isNumeric(String strNum) {
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException | NullPointerException nfe) {
+            return false;
+        }
+        return true;
     }
 }
